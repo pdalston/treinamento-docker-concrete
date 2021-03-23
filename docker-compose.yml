@@ -1,0 +1,52 @@
+version: '3.9'
+services:
+  sistema_concrete_java:
+    container_name: sistema_concrete_java_container
+    image: pdalston/validador-cpf-turma-devops
+    ports:
+      - "3001:8080"
+  sistema_concrete_csharp:
+    container_name: sistema_concrete_csharp_container
+    image: pdalston/validador-cpf-csharp-turma-devops
+    ports:
+      - "3002:80"
+
+
+######################################################
+# para buildar imagem
+# $ docker-compose build
+
+# para levantar
+# $ docker-compose up
+# $ docker-compose up --detach # roda em background
+
+# para derrubar
+# $ docker-compose stop
+
+# para mostrar log
+# $ docker-compose logs --follow
+
+# para ver os serviços disponíveis
+# $ docker-compose ps
+
+# para derrubar os serviços
+# $ docker-compose down
+
+# para verificar network containers
+# $ docker network ls
+
+# para entrar na maquina e verificar rede
+# $ docker exec -it sistema_csharp bash
+# $ docker exec -it sistema_java bash
+# $ docker exec -it sistema_nodejs bash
+
+# ver o IP interno do container
+# $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sistema_csharp
+# $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sistema_java
+# $ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' sistema_nodejs
+
+# mostra info network
+# $ docker network inspect bridge
+
+# verificar acesso interno containers mesma rede
+# $ curl 172.17.0.1:3001 -- sistema java
